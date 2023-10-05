@@ -1,0 +1,2 @@
+class CommentChildrenController < ApplicationController
+end
