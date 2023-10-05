@@ -1,7 +1,7 @@
 databases:
   - name: snudge
     databaseName: snudge
-    user: route
+    user: root
 
 services:
   - type: web
