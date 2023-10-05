@@ -1,0 +1,18 @@
+databases:
+  - name: snudge
+    databaseName: snudge
+    user: route
+
+services:
+  - type: web
+    name: snudge
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: snudge
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
