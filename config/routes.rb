@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :contents do
     collection do
       patch "change_status/:id", to: "contents#approve_reject_flag"
+      get "pending", to: "contents#show_pending"
     end
    
   end
@@ -21,3 +22,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 end
+

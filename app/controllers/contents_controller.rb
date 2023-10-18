@@ -23,6 +23,10 @@ class ContentsController < ApplicationController
     def show
         render json: @content
     end
+    def show_pending
+        pending = Content.where(status: "pending")
+        render json: pending
+    end
     def approve_reject_flag
         if @content.update!(status: params[:status])
             render json: @content, status: :ok
