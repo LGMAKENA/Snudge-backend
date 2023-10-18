@@ -1,6 +1,9 @@
 class ContentsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid,with: :validation
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    before_action :set_content, only: [:show, :edit, :update, :destroy, :approve_reject_flag]
     
+
     def index
         render json: Content.all 
     end
@@ -17,12 +20,29 @@ class ContentsController < ApplicationController
             render json: content, status: :created
         end
     end
+    def show
+        render json: @content
+    end
+    def approve_reject_flag
+        if @content.update!(status: params[:status])
+            render json: @content, status: :ok
+        end
+    end
     
     private 
+    def set_content
+        @content = Content.find(params[:id])
+    end
+
+    def record_not_found
+        render json: {error: "Content not found"},status: :not_found
+    end
+
     def content_params
         params.permit(:title, :body, :category_id, :user_id, :content_urls)
     end
     def validation(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
+
 end

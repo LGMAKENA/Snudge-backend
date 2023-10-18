@@ -4,7 +4,7 @@ class Content < ApplicationRecord
     has_many :comment_parents 
     belongs_to :category
     has_many :wishlists
-    has_many :content_media
+    has_many :content_media, :dependent => :destroy
     has_many :student_subscriptions
     
 end

@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   # resources :comment_parents
   # resources :wishlists
   # resources :content_media
-  resources :contents
+  resources :contents do
+    collection do
+      patch "change_status/:id", to: "contents#approve_reject_flag"
+    end
+   
+  end
   resources :categories
   # get "users",to: "users#index"
   resources :users,only: [:index, :create]
