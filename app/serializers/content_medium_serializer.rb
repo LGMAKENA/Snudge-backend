@@ -1,3 +1,3 @@
 class ContentMediumSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :link
 end
