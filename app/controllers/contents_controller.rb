@@ -20,6 +20,20 @@ class ContentsController < ApplicationController
             render json: content, status: :created
         end
     end
+    def update
+        ActiveRecord::Base.transaction do
+            @content.update(content_params)
+            @content.contentmedia.destroy_all
+            params[:content_urls].each do |url|
+              content_media= ContentMedium.create!(content_id: content.id, link: url)
+            end
+        end
+    end
+    def destroy
+        @content.destroy
+        head :no_content
+    end
+
     def show
         render json: @content
     end
