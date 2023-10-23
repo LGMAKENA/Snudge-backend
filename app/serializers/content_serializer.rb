@@ -4,4 +4,5 @@ class ContentSerializer < ActiveModel::Serializer
   belongs_to :user
   belongs_to :category
   has_many :content_media
+  has_many :comment_parents
 end

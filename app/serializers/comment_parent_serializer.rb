@@ -1,3 +1,4 @@
 class CommentParentSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :comment
+  belongs_to :user 
 end

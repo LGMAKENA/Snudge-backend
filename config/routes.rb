@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       patch "change_status/:id", to: "contents#approve_reject_flag"
       get "pending", to: "contents#show_pending"
+      post ':id/comment',to: 'comment_parents#create'
     end
    
   end
