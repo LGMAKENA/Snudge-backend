@@ -17,7 +17,9 @@ class WishlistsController < ApplicationController
         else
             render json: {message: "wishlist not found"}, status: :not_found 
         end
-       
-
+    end
+    private
+    def wishlist_params
+        params.permit(:user_id,:content_id)
     end
 end

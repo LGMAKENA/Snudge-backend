@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # resources :notifications
   # resources :comment_children
   # resources :comment_parents
-  # resources :wishlists
+  resources :wishlists,only: [:create, :destroy]
   # resources :content_media
   resources :contents do
     collection do
