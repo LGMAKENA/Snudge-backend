@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "/login", to "users#create"
   # resources :student_subscriptions
   # resources :notifications
   # resources :comment_children
