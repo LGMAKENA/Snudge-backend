@@ -14,6 +14,12 @@ class UsersController < ApplicationController
 
         end
     end
+
+    def show
+        current_user = User.find{session[:user_id]}
+        render json: current_user
+    end
+
     def index 
         @users = User.all
         render json: @users, except: [:password_digest, :created_at,:updated_at]
