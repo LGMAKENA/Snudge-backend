@@ -2,6 +2,8 @@ class UsersController < ApplicationController
     # before_action :check_role, only: [:index, :create]
     rescue_from ActiveRecord::RecordInvalid,with: :validation
 
+    skip_before_action :authorized, only: :create
+
     def login
         user = User.find_by(email: params['email'])
         if user&.authenticate(params[:password])
@@ -34,6 +36,15 @@ class UsersController < ApplicationController
             render json: {message: "User not found"}, status: :not_found
         end
 
+    end
+
+    def create
+        user = user.find_by(username: params[:username])
+        if user&.authenticate(params[:password])
+            session[:user_id] = user.id
+            render json: user, status: :created
+        else
+            render json: (error: (login: "Invalid username or password")), status: :unauthorized
     end
 
     private
