@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    # before_action :check_role, only: [:index, :create]
+    skip_before_action :authenticate, only: [:login]
     rescue_from ActiveRecord::RecordInvalid,with: :validation
 
     def login
