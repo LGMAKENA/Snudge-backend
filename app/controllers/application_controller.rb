@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
-    before_action :authenticate
+    # before_action :authenticate
     def authenticate
         if session[:user_id].nil?
             render json: { message: 'You are not logged in'}, status: :unauthorized
