@@ -57,7 +57,7 @@ class ContentsController < ApplicationController
     end
 
     def content_params
-        params.permit(:title, :body, :category_id, :user_id, :content_urls)
+        params.permit(:title, :body, :category_id, :user_id, :content_urls, :content_type, :status)
     end
     def validation(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
