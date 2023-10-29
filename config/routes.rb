@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # resources :notifications
   # resources :comment_children
   # resources :comment_parents
+  get "contents_comments/:contentId",to: "comment_parents#showContentsComments"
   resources :wishlists,only: [:create, :destroy]
   # resources :content_media
   resources :contents do
