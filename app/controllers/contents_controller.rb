@@ -23,9 +23,9 @@ class ContentsController < ApplicationController
     def update
         ActiveRecord::Base.transaction do
             @content.update(content_params)
-            @content.contentmedia.destroy_all
+            @content.content_media.destroy_all
             params[:content_urls].each do |url|
-              content_media= ContentMedium.create!(content_id: content.id, link: url)
+              content_media= ContentMedium.create!(content_id: @content.id, link: url)
             end
         end
     end
