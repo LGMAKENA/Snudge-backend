@@ -10,6 +10,16 @@ class CommentParentsController < ApplicationController
 
        end
     end
+
+    # Retrieves all comments associated with a specific content ID.
+    #
+    # @param [Integer] contentId - The ID of the content.
+    # @return [Array<CommentParent>] - An array of CommentParent objects representing the comments.
+    def showContentsComments
+        contentsComments = CommentParent.where(content_id: params[:contentId])
+        render json: contentsComments
+    end
+
     def update
         if @comment.update(comment_params)
             render json: @comment 

@@ -23,9 +23,9 @@ class ContentsController < ApplicationController
     def update
         ActiveRecord::Base.transaction do
             @content.update(content_params)
-            @content.contentmedia.destroy_all
+            @content.content_media.destroy_all
             params[:content_urls].each do |url|
-              content_media= ContentMedium.create!(content_id: content.id, link: url)
+              content_media= ContentMedium.create!(content_id: @content.id, link: url)
             end
         end
     end
@@ -57,7 +57,7 @@ class ContentsController < ApplicationController
     end
 
     def content_params
-        params.permit(:title, :body, :category_id, :user_id, :content_urls)
+        params.permit(:title, :body, :category_id, :user_id, :content_urls, :content_type, :status)
     end
     def validation(invalid)
         render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
