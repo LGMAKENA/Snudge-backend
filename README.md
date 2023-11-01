@@ -1,4 +1,4 @@
-# Snudge - Moringa student Motivation app
+# Snudge - Moringa Student Motivation app
 
 ## Project Description
 
